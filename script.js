@@ -111,9 +111,7 @@ $(document).ready(function() {
     var requestUrl = apiRoot + 'tasks';
 
     $.ajax({
-      url: requestUrl + '/' + $.param({
-        taskId: taskId
-      }),
+      url: requestUrl + '/' + taskId,
       method: 'DELETE',
       success: function() {
         parentEl.slideUp(400, function() { parentEl.remove(); });
@@ -139,11 +137,7 @@ $(document).ready(function() {
         title: taskTitle,
         content: taskContent
       }),
-     complete: function(data) {
-        if(data.status === 200) {
-          getAllTasks();
-        }
-      }
+      success: getAllTasks
     });
   }
 
