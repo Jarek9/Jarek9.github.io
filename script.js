@@ -109,10 +109,12 @@ $(document).ready(function() {
     var parentEl = $(this).parents('[data-task-id]');
     var taskId = parentEl.attr('data-task-id');
     var requestUrl = apiRoot + 'tasks';
+	
 
     $.ajax({
-      url: requestUrl + '/' + taskId,
-      method: 'DELETE',
+      url: requestUrl + '/?' + $.param({
+        taskId: taskId
+      }),method: 'DELETE',
       success: function() {
         parentEl.slideUp(400, function() { parentEl.remove(); });
       }
